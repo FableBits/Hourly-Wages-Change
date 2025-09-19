@@ -21,9 +21,26 @@ The analysis calculates hourly wages and tracks percentage changes across differ
 ## Data Sources
 
 The analysis uses OECD data tables:
-- `oecd_annual_average_wages`: Annual average wages by country
-- `oecd_hours_worked`: Annual hours worked per employee
+
+### Primary Data
+- **Annual Average Wages**: [OECD.Stat - Average annual wages](https://stats.oecd.org/index.aspx?DataSetCode=AV_AN_WAGE)
+  - Source table: `oecd_annual_average_wages`
+  - Includes wages adjusted for inflation using PPP (Purchasing Power Parity)
+  
+- **Hours Worked**: [OECD.Stat - Hours worked](https://stats.oecd.org/index.aspx?DataSetCode=ANHRS)
+  - Source table: `oecd_hours_worked` 
+  - Annual hours worked per employee by country
+  - **Note**: Data filtered to include only dependent workers (employees)
+
+### Reference Data
 - `the_countries`: Reference table for European country classification
+  - Used to filter analysis to European countries only
+
+### Data Collection
+To reproduce this analysis:
+1. Download the CSV files from the OECD links above
+2. Import them into your MySQL/MariaDB database
+3. Run the `wages_2.sql` script
 
 ## Key Time Periods Analyzed
 
@@ -57,8 +74,11 @@ The analysis uses OECD data tables:
 ## Usage
 
 1. **Prerequisites**: MySQL/MariaDB database with OECD source tables
-2. **Execution**: Run the SQL script `wages_2.sql` in your database
-3. **Output**: Creates analysis tables for further querying and visualization
+2. **Data Setup**: Download CSV files from the OECD links above and import into your database
+3. **Execution**: Run the SQL script `wages_2.sql` in your database
+4. **Output**: Creates analysis tables for further querying and visualization
+
+**Note**: Raw data files (CSV) are not included in this repository to keep it lightweight and ensure users get the most current data from OECD sources.
 
 ## Key Data Transformations
 
